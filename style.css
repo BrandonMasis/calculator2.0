@@ -40,14 +40,28 @@ body {
 }
 
 #display{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 6rem;
     border-radius: 5px;
     margin-bottom: 1rem;
     background-color: var(--viridian);
    
-    padding: 1rem;
+
+}
+
+#displayNumbers{
+    padding: 10px;
     font-size: 20px;
     color: white;
+}
+
+#displayResult{
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(0, 70, 46, 0.61)
 }
 
 #buttons{

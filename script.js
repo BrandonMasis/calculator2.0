@@ -1,6 +1,6 @@
 const numberBtns = document.querySelectorAll('.button');
 const operatorBtns = document.querySelectorAll('.operator');
-const calcDisplay = document.querySelector('#display');
+const displayNumbers = document.querySelector('#displayNumbers');
 
 let firstNumber;
 let operator;
@@ -49,6 +49,5 @@ function addGlobalEventListener(type, selector, callback) {
 
 addGlobalEventListener('click', '.button, .operator', (e) => {
   let value = e.target.textContent;
-
-  calcDisplay.textContent += value;
+  displayNumbers.textContent += value;
 });
