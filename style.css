@@ -11,7 +11,6 @@
 
 
 body {
-    
     background-color: var(--viridian);
 }
 
@@ -22,4 +21,63 @@ body {
     --cambridge-blue: #8fc0a9ff;
     --verdigris: #68b0abff;
     --viridian: #4a7c59ff;
+}
+
+#app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#calculator{
+    background-color: var(--tea-green);
+    padding: 1rem;
+    border-radius: 10px;
+    width: 20rem;
+    box-shadow: rgba(54, 54, 54, 0.705) 0px 2px 8px 0px;
+}
+
+#display{
+    height: 6rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    background-color: var(--viridian);
+   
+    padding: 1rem;
+    font-size: 20px;
+    color: white;
+}
+
+#buttons{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.button-row{
+    display: flex;
+     justify-content: space-between;
+}
+
+.button{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--eggshell);
+    border: solid 1px var(--verdigris);
+    font-size: 18px;
+    opacity: 80%;
+    cursor: pointer;
+    
+}
+
+.operator{
+    background-color: var(--verdigris);
+    color: white;
+}
+
+.button:hover{
+    opacity: 100%;
 }
