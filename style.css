@@ -61,10 +61,10 @@ body {
      justify-content: space-between;
 }
 
-.button{
+.button,.operator{
     width: 60px;
     height: 60px;
-    border-radius: 50%;
+    border-radius: 50px;
     background-color: var(--eggshell);
     border: solid 1px var(--verdigris);
     font-size: 18px;
@@ -80,4 +80,9 @@ body {
 
 .button:hover{
     opacity: 100%;
+}
+
+.expandable{
+    flex-grow: 1;
+ 
 }
