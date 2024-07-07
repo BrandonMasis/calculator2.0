@@ -11,7 +11,7 @@
 
 
 body {
-    background-color: var(--viridian);
+    background-color: var(--tea-green);
 }
 
 
@@ -32,7 +32,7 @@ body {
 }
 
 #calculator{
-    background-color: var(--tea-green);
+    background-color: var(--eggshell);
     padding: 1rem;
     border-radius: 10px;
     width: 20rem;
@@ -46,7 +46,7 @@ body {
     height: 6rem;
     border-radius: 5px;
     margin-bottom: 1rem;
-    background-color: var(--viridian);
+    background-color: var(--verdigris);
    
 
 }
@@ -59,9 +59,8 @@ body {
 
 #displayResult{
     padding: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    color: rgba(0, 70, 46, 0.61)
+    font-size: 30px;
+    color: white;
 }
 
 #buttons{
@@ -80,7 +79,7 @@ body {
     height: 60px;
     border-radius: 50px;
     background-color: var(--eggshell);
-    border: solid 1px var(--verdigris);
+    border: solid 1px rgba(128, 128, 128, 0.459);
     font-size: 18px;
     opacity: 80%;
     cursor: pointer;
@@ -92,8 +91,12 @@ body {
     color: white;
 }
 
+.operator:hover{
+    background-color: rgb(88, 159, 168);
+}
+
 .button:hover{
-    opacity: 100%;
+    background-color: rgba(221, 215, 196, 0.644);
 }
 
 .expandable{

@@ -14,44 +14,51 @@
     <section id="app">
         <div id="calculator">
             <div id="display">
-                <div id="displayNumbers">12 + 90 + 2 / 2
+                <div id="displayNumbers">
                 </div>
-                <div id="displayResult">52</div>
+                <div id="displayResult"></div>
             </div>
             <div id="buttons">
                 <div class="button-row">
-                    <button
-                        class="operator expandable">clear</button>
+                    <button id="clearBtn"
+                        class="operator expandable"
+                        data-operator="clear">clear</button>
                 </div>
                 <div class="button-row">
                     <button class="button">7</button>
                     <button class="button">8</button>
                     <button class="button">9</button>
-                    <button class="operator">+</button>
+                    <button class="operator"
+                        data-operator="+">+</button>
                 </div>
                 <div class="button-row">
                     <button class="button">4</button>
                     <button class="button">5</button>
                     <button class="button">6</button>
-                    <button class=" operator">-</button>
+                    <button class=" operator"
+                        data-operator="-">-</button>
 
                 </div>
                 <div class="button-row">
                     <button class="button">1</button>
                     <button class="button">2</button>
                     <button class="button">3</button>
-                    <button class=" operator">×</button>
+                    <button class=" operator"
+                        data-operator="*">×</button>
 
                 </div>
                 <div class="button-row">
                     <button class="button">.</button>
                     <button class="button">0</button>
                     <button class="button">=</button>
-                    <button class=" operator">÷</button>
+                    <button class=" operator"
+                        data-operator="/">÷</button>
 
                 </div>
             </div>
         </div>
+
+        <button onclick="testAlert()">TEST</button>
     </section>
 </body>
 
