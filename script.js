@@ -9,6 +9,15 @@ const state = {
   secondNumber: undefined,
   resultDisplayed: false,
   operatorLock: false,
+  operatorOnEmptyLock: true,
+  clear() {
+    this.firstNumber = undefined;
+    this.operator = undefined;
+    this.secondNumber = undefined;
+    this.resultDisplayed = false;
+    this.operatorLock = false;
+    this.operatorOnEmptyLock = true;
+  },
 };
 
 const add = (a, b) => {
@@ -24,7 +33,12 @@ const multiply = (a, b) => {
 };
 
 const divide = (a, b) => {
-  return a / b;
+  if (a == 0 || b == 0) {
+    displayNumbers.textContent = 'ERROR, press "clear"';
+    displayResult.textContent = "Can't divide by 0";
+    throw new Error("Can't divide by 0");
+  }
+  return (a / b).toFixed(2);
 };
 
 function operate(operator, first, second) {
@@ -61,27 +75,48 @@ addGlobalEventListener('click', '.button', (e) => {
   }
 
   state.operatorLock = false;
+  state.operatorOnEmptyLock = false;
 
   displayResult.textContent += value;
 });
 
 addGlobalEventListener('click', '.operator', (e) => {
+  //In case user presses operator multiple times, it won't
+  // continue executing operations
+  if (state.operatorOnEmptyLock) {
+    return;
+  }
+
   if (!state.operatorLock) {
     state.secondNumber = parseInt(displayResult.textContent);
   } else {
     state.secondNumber = undefined;
   }
+
+  // first number works as an accumulator
   state.firstNumber = operate(
     state.operator,
     state.firstNumber,
     state.secondNumber
   );
+
+  // operate() works with previous operator, so then we define the new one
   state.operator = e.target.getAttribute('data-operator');
   displayNumbers.textContent = `${state.firstNumber} ${state.operator} `;
 
-  displayResult.textContent = state.firstNumber;
+  // code for result here
+  if (e.target.getAttribute('data-operator') == '=') {
+    displayNumbers.textContent = '';
+    displayResult.textContent = state.firstNumber;
+    state.clear();
+  } else {
+    displayResult.textContent = state.firstNumber;
+    state.operatorLock = true;
+  }
+
   state.secondNumber = undefined;
-  state.operatorLock = true;
+  // this one is to check if the display is currently displaying the result
+  // if so, when you click a number, it cleans it out in order to write the second number
   state.resultDisplayed = true;
 });
 
@@ -89,15 +124,11 @@ addGlobalEventListener('click', '#clearBtn', (e) => {
   displayNumbers.textContent = '';
   displayResult.textContent = '';
 
-  state.firstNumber = undefined;
-  state.secondNumber = undefined;
-  state.operator = undefined;
-  state.resultDisplayed = false;
-  state.operatorLock = false;
+  state.clear();
 });
 
+addGlobalEventListener('click', '#resultBtn', (e) => {});
+
 function testAlert() {
-  alert(
-    `first: ${state.firstNumber} second: ${state.secondNumber} operator: ${state.operator}`
-  );
+  console.table(state);
 }
