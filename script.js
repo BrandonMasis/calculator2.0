@@ -66,9 +66,10 @@ function addGlobalEventListener(type, selector, callback) {
   });
 }
 
-addGlobalEventListener('click', '.button', (e) => {
-  let value = e.target.textContent;
-
+function typeNumber(value) {
+  if (value == '.' && displayResult.textContent.includes('.')) {
+    return;
+  }
   if (state.resultDisplayed) {
     displayResult.textContent = '';
     state.resultDisplayed = false;
@@ -78,6 +79,12 @@ addGlobalEventListener('click', '.button', (e) => {
   state.operatorOnEmptyLock = false;
 
   displayResult.textContent += value;
+}
+
+addGlobalEventListener('click', '.button', (e) => {
+  let value = e.target.textContent;
+
+  typeNumber(value);
 });
 
 addGlobalEventListener('click', '.operator', (e) => {
@@ -88,7 +95,7 @@ addGlobalEventListener('click', '.operator', (e) => {
   }
 
   if (!state.operatorLock) {
-    state.secondNumber = parseInt(displayResult.textContent);
+    state.secondNumber = parseFloat(displayResult.textContent);
   } else {
     state.secondNumber = undefined;
   }
@@ -110,8 +117,8 @@ addGlobalEventListener('click', '.operator', (e) => {
     displayResult.textContent = state.firstNumber;
     state.clear();
   } else {
-    displayResult.textContent = state.firstNumber;
     state.operatorLock = true;
+    displayResult.textContent = state.firstNumber;
   }
 
   state.secondNumber = undefined;
@@ -132,3 +139,22 @@ addGlobalEventListener('click', '#resultBtn', (e) => {});
 function testAlert() {
   console.table(state);
 }
+
+window.addEventListener('keydown', (e) => {
+  let key = e.key;
+
+  if (key == 'Backspace') {
+    displayResult.textContent = displayResult.textContent.slice(0, -1);
+
+    if (state.resultDisplayed) {
+      displayResult.textContent = '';
+      state.resultDisplayed = false;
+    }
+  }
+
+  // keyboard support
+  if ((key >= '0' && key <= '9') || key == '.') {
+    let value = key;
+    typeNumber(value);
+  }
+});
